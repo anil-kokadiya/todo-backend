@@ -78,12 +78,7 @@ app.put("/api/todo/:id", (req, res, next) => {
     console.log("ID : ", req.params.id);
     db.trans
     db.run(
-        `UPDATE TODO SET
-         TASK_NAME = ?,
-         TASK_DESC = ?,
-         TASK_DUE = ?,
-         TASK_STATUS = ?, 
-         WHERE TASK_ID = ?`,
+        `UPDATE TODO SET TASK_NAME = ?, TASK_DESC = ?, TASK_DUE = ?, TASK_STATUS = ? WHERE TASK_ID = ?`,
         [data.TASK_NAME, data.TASK_DESC, data.TASK_DUE, data.TASK_STATUS, req.params.id],
         function (err, result) {
             if (err) {
