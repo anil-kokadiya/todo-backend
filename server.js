@@ -72,8 +72,11 @@ app.put("/api/todo/:id", (req, res, next) => {
         TASK_NAME: req.body.TASK_NAME,
         TASK_DESC: req.body.TASK_DESC,
         TASK_DUE: req.body.TASK_DUE,
-        TASK_STATUS: req.body.TASK_STATUS
+        TASK_STATUS: req.body.TASK_STATUS,
     }
+    console.log("DATA : ", data);
+    console.log("ID : ", req.params.id);
+    db.trans
     db.run(
         `UPDATE TODO SET
          TASK_NAME = ?,
@@ -81,7 +84,7 @@ app.put("/api/todo/:id", (req, res, next) => {
          TASK_DUE = ?,
          TASK_STATUS = ?, 
          WHERE TASK_ID = ?`,
-        [data.TASK_NAME, data.TASK_DESC, data.TASK_DUE, data.TASK_STATUS, req.TASK_ID],
+        [data.TASK_NAME, data.TASK_DESC, data.TASK_DUE, data.TASK_STATUS, req.params.id],
         function (err, result) {
             if (err) {
                 console.log(err);
